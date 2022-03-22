@@ -17,14 +17,14 @@ class FolderController extends Controller
 
     public function store(StoreFolderRequest $request)
     {
-        $rules = [
-            'name' => 'required|min:3|max:50'
-        ];
+        // $rules = [
+        //     'name' => 'required|min:3|max:50'
+        // ];
 
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
-            return response()->json($validator->errors(), 400);
-        }
+        // $validator = Validator::make($request->all(), $rules);
+        // if($validator->fails()){
+        //     return response()->json($validator->errors(), 400);
+        // }
 
         $folder = new Folder();
         $folder->name = $request->name;

@@ -27,6 +27,12 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [ApiController::class, 'login']);
 Route::post('register', [ApiController::class, 'register']);
 
+// just for test
+// Route::resource('catalogs', CatalogController::class);
+// Route::resource('folders', FolderController::class);
+// Route::resource('users', UserController::class);
+// end of test
+
 Route::group(['middleware' => 'auth.jwt'], function () {
     Route::resource('catalogs', CatalogController::class);
     Route::resource('folders', FolderController::class);

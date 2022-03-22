@@ -39,7 +39,8 @@ class CatalogController extends Controller
         if($request->hasFile('photo')){
             $path = $request->photo->store('image');
         }
-        $catalog->name = $path;  
+        $base64 = base64_encode(file_get_contents('storage/'.$path));
+        $catalog->name = $base64;
         $catalog->save();
         return response()->json($catalog, 201);
     }

@@ -22,15 +22,15 @@ class ApiController extends Controller
      */
     public function login(Request $request)
     {
-        $input = $request->only('email', 'password');
+        $input = $request->only('phone', 'password');
         $token = null;
 
-        $user = User::where('email', $request->email) -> first();
+        $user = User::where('phone', $request->phone) -> first();
 
         if (!$token = JWTAuth ::attempt($input)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Invalid Email or Password',
+                'message' => 'Invalid Phone number or Password',
             ], 401);
         }
 
@@ -77,9 +77,10 @@ class ApiController extends Controller
         $user->fname = $request->fname;
         $user->lname = $request->lname;
         $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->mac = $request->mac;
-        $user->latitude = "";
-        $user->longitude = "";
+        $user->latitude = 0;
+        $user->longitude = 0;
         $user->role_id = $request->role_id;
         $user->password = bcrypt($request->password);
         $user->save();
